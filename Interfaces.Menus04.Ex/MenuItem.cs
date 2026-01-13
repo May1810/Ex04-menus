@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Events.Menus04.Ex
+namespace Interfaces.Menus04.Ex
 {
-    public class Class1
+    public class MenuItem
     {
     }
 }
