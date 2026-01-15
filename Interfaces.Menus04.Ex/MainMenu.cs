@@ -12,7 +12,7 @@ namespace Interfaces.Menus04.Ex
         private MenuItem m_CurrentItem;
         public MainMenu()
         {
-            m_RootItem = new MenuItem("Main Menu");
+            m_RootItem = new MenuItem(string.Empty);
             m_CurrentItem = m_RootItem;
         }
 
