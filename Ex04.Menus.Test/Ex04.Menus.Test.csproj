@@ -35,5 +35,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CountLowercaseListener.cs" />
+    <Compile Include="CurrentDateListener.cs" />
+    <Compile Include="CurrentTimeListener.cs" />
+    <Compile Include="MenuLogicActions.cs" />
+    <Compile Include="VersionListener.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Interfaces.Menus04.Ex\Ex04.Menus.Interfaces.csproj">
+      <Project>{fed3b0a9-41c0-4bc9-babf-66b6c704d974}</Project>
+      <Name>Ex04.Menus.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

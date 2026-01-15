@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ex04.Menus.Interfaces
+namespace Ex04.Menus.Events
 {
     public class MainMenu
     {
         private MenuItem m_RootItem;
         private MenuItem m_CurrentItem;
+
         public MainMenu()
         {
-            m_RootItem = new MenuItem(string.Empty);
+            m_RootItem = new MenuItem("Main Menu");
             m_CurrentItem = m_RootItem;
         }
 
@@ -38,15 +39,16 @@ namespace Ex04.Menus.Interfaces
                 }
                 else if (userChoice > 0)
                 {
-                    MenuItem selectedItem = m_CurrentItem.SubItems[userChoice - 1];
+                    MenuItem selectedItem =
+                        m_CurrentItem.SubItems[userChoice - 1];
 
-                    if (m_CurrentItem.SubItems.Count > 0)
+                    if (selectedItem.SubItems.Count > 0)
                     {
                         m_CurrentItem = selectedItem;
                     }
                     else
                     {
-                        selectedItem.OnSelected();  // Invoke the action associated with the menu item 
+                        selectedItem.OnSelectedItem();
                     }
                 }
             }
@@ -55,39 +57,44 @@ namespace Ex04.Menus.Interfaces
         private void displayMenu()
         {
             Console.Clear();
-            string menuTitle = m_CurrentItem.MenuTitle;
-            string exitOrBack = m_CurrentItem == m_RootItem ? "Exit" : "Back";
-            string numberOfItems = m_CurrentItem.SubItems.Count.ToString();
+
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(String.Format("** {0} **",menuTitle));
+            Console.WriteLine(
+                string.Format("** {0} **", m_CurrentItem.MenuTitle));
             Console.ResetColor();
+
             Console.WriteLine("------------------------");
 
-            for (int i = 1; i <= m_CurrentItem.SubItems.Count; i++)
+            for (int i = 0; i < m_CurrentItem.SubItems.Count; i++)
             {
-                Console.WriteLine(String.Format("{0}. {1}   ", i, m_CurrentItem.SubItems[i-1].MenuTitle));
+                Console.WriteLine(
+                    string.Format("{0}. {1}",
+                        i + 1,
+                        m_CurrentItem.SubItems[i].MenuTitle));
             }
 
-            Console.WriteLine(String.Format("0. {0}", exitOrBack));
-            Console.WriteLine(String.Format("Please enter your choice (1-{0} or 0 to {1}): ", numberOfItems, exitOrBack));
-            Console.WriteLine(">> ");
+            string exitOrBack =
+                m_CurrentItem == m_RootItem ? "Exit" : "Back";
 
+            Console.WriteLine(string.Format("0. {0}", exitOrBack));
+            Console.WriteLine(">> ");
         }
 
         private int getUserChoice()
         {
-            string userChoiceStr = Console.ReadLine();
+            string input = Console.ReadLine();
 
-            if (int.TryParse(userChoiceStr, out int userChoice))
+            if (int.TryParse(input, out int choice))
             {
-                if (userChoice >= 0 && userChoice <= m_CurrentItem.SubItems.Count)
+                if (choice >= 0 &&
+                    choice <= m_CurrentItem.SubItems.Count)
                 {
-                    return userChoice;
+                    return choice;
                 }
             }
+
             Console.WriteLine("Invalid choice. Please try again.");
             return -1;
         }
-
     }
 }

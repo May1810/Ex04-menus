@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Events.Menus04.Ex
+namespace Ex04.Menus.Events
 {
     public class MenuItem
     {
