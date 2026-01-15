@@ -8,19 +8,19 @@ namespace Ex04.Menus.Interfaces
 {
     public class MenuItem
     {
-        private string m_MenuTitle;
-        private List<MenuItem> m_SubItems;
+        private readonly string r_ItemTitle;
+        private readonly List<MenuItem> r_SubItems;
         private MenuItem m_ParentItem;
         private ISelectionListener m_SelectionListener;
 
-        public string MenuTitle
+        public string ItemTitle
         {
-            get { return m_MenuTitle; }
+            get { return r_ItemTitle; }
         }
 
         public List<MenuItem> SubItems
         {
-            get { return m_SubItems; }
+            get { return r_SubItems; }
         }
 
         public MenuItem ParentItem
@@ -29,8 +29,8 @@ namespace Ex04.Menus.Interfaces
         }
         public MenuItem(string i_NewMenuTitle)
         {
-            m_MenuTitle = i_NewMenuTitle;
-            m_SubItems = new List<MenuItem>();
+            r_ItemTitle = i_NewMenuTitle;
+            r_SubItems = new List<MenuItem>();
             m_ParentItem = null;
             m_SelectionListener = null;
         }
@@ -38,7 +38,7 @@ namespace Ex04.Menus.Interfaces
         public void AddSubItem(MenuItem i_NewSubItem)
         {
             i_NewSubItem.m_ParentItem = this;
-            m_SubItems.Add(i_NewSubItem);
+            r_SubItems.Add(i_NewSubItem);
         }
 
         public void SetSelectionListener(ISelectionListener i_Listener)
@@ -48,11 +48,10 @@ namespace Ex04.Menus.Interfaces
 
         public void OnSelected()
         {
-            if (m_SelectionListener != null && m_SubItems.Count == 0)
+            if (m_SelectionListener != null && r_SubItems.Count == 0)
             {
                 m_SelectionListener.OnSelected();
             }
         }
-
     }
 }

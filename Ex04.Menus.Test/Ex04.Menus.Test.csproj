@@ -39,10 +39,16 @@
     <Compile Include="CountLowercaseListener.cs" />
     <Compile Include="CurrentDateListener.cs" />
     <Compile Include="CurrentTimeListener.cs" />
+    <Compile Include="InterfaceMenuBuilder.cs" />
     <Compile Include="MenuLogicActions.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="VersionListener.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Events.Menus04.Ex\Ex04.Menus.Events.csproj">
+      <Project>{51d951b3-4bdc-49e8-b2b4-8ad9e0bae296}</Project>
+      <Name>Ex04.Menus.Events</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Interfaces.Menus04.Ex\Ex04.Menus.Interfaces.csproj">
       <Project>{fed3b0a9-41c0-4bc9-babf-66b6c704d974}</Project>
       <Name>Ex04.Menus.Interfaces</Name>

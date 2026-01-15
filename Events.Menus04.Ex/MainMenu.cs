@@ -8,13 +8,18 @@ namespace Ex04.Menus.Events
 {
     public class MainMenu
     {
-        private MenuItem m_RootItem;
+        private readonly MenuItem r_RootItem;
         private MenuItem m_CurrentItem;
+
+        public MenuItem RootItem
+        {
+            get { return r_RootItem; }
+        }
 
         public MainMenu()
         {
-            m_RootItem = new MenuItem("Main Menu");
-            m_CurrentItem = m_RootItem;
+            r_RootItem = new MenuItem("Delegates Main Menu");
+            m_CurrentItem = r_RootItem;
         }
 
         public void Show()
@@ -28,7 +33,7 @@ namespace Ex04.Menus.Events
 
                 if (userChoice == 0)
                 {
-                    if (m_CurrentItem == m_RootItem)
+                    if (m_CurrentItem == r_RootItem)
                     {
                         isPressedExit = true;
                     }
@@ -39,8 +44,7 @@ namespace Ex04.Menus.Events
                 }
                 else if (userChoice > 0)
                 {
-                    MenuItem selectedItem =
-                        m_CurrentItem.SubItems[userChoice - 1];
+                    MenuItem selectedItem = m_CurrentItem.SubItems[userChoice - 1];
 
                     if (selectedItem.SubItems.Count > 0)
                     {
@@ -57,27 +61,22 @@ namespace Ex04.Menus.Events
         private void displayMenu()
         {
             Console.Clear();
-
+            string menuTitle = m_CurrentItem.ItemTitle;
+            string exitOrBack = m_CurrentItem == r_RootItem ? "Exit" : "Back";
+            string numberOfItems = m_CurrentItem.SubItems.Count.ToString();
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(
-                string.Format("** {0} **", m_CurrentItem.MenuTitle));
+            Console.WriteLine(String.Format("** {0} **", menuTitle));
             Console.ResetColor();
-
             Console.WriteLine("------------------------");
 
             for (int i = 0; i < m_CurrentItem.SubItems.Count; i++)
             {
-                Console.WriteLine(
-                    string.Format("{0}. {1}",
-                        i + 1,
-                        m_CurrentItem.SubItems[i].MenuTitle));
+                Console.WriteLine(String.Format("{0}. {1}", i + 1,  m_CurrentItem.SubItems[i].ItemTitle));
             }
 
-            string exitOrBack =
-                m_CurrentItem == m_RootItem ? "Exit" : "Back";
-
-            Console.WriteLine(string.Format("0. {0}", exitOrBack));
-            Console.WriteLine(">> ");
+            Console.WriteLine(String.Format("0. {0}", exitOrBack));
+            Console.Write(String.Format("Please enter your choice (1-{0} or 0 to {1}): ", numberOfItems, exitOrBack));
+            Console.Write(">> ");
         }
 
         private int getUserChoice()
@@ -86,14 +85,14 @@ namespace Ex04.Menus.Events
 
             if (int.TryParse(input, out int choice))
             {
-                if (choice >= 0 &&
-                    choice <= m_CurrentItem.SubItems.Count)
+                if (choice >= 0 && choice <= m_CurrentItem.SubItems.Count)
                 {
                     return choice;
                 }
             }
 
             Console.WriteLine("Invalid choice. Please try again.");
+            Console.ReadKey();
             return -1;
         }
     }
