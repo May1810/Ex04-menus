@@ -39,6 +39,7 @@
     <Compile Include="CountLowercaseListener.cs" />
     <Compile Include="CurrentDateListener.cs" />
     <Compile Include="CurrentTimeListener.cs" />
+    <Compile Include="EventsMenuBuilder.cs" />
     <Compile Include="InterfaceMenuBuilder.cs" />
     <Compile Include="MenuLogicActions.cs" />
     <Compile Include="Program.cs" />

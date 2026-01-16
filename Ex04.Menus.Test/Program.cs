@@ -12,6 +12,8 @@ namespace Ex04.Menus.Test
         static void Main(string[] args)
         {
             InterfaceMenuBuilder.RunInterfaceMenu();
-        }   
+            EventsMenuBuilder.RunEventsMenu();
+
+        }
     }
 }
